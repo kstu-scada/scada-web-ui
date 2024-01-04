@@ -1,0 +1,226 @@
+<html><head><style>
+
+        </style>
+
+        </head>
+<body>
+<div>
+<canvas id="container" width="800" height="800" style="display: block; width: 100%;"></canvas>
+</div>
+        <script type="module">
+        var canvas;
+        var pen;
+        var scale_x = 1;
+        var scale_y = 1;
+        var scale_g = 2;
+
+        function Schema() {
+
+            canvas = document.getElementById("container");
+            canvas.width = canvas.width;
+
+            pen = canvas.getContext("2d");
+
+            pen.scale(scale_x, scale_y);
+            pen.lineWidth = 2;
+            pen.lineJoin = "round"; 
+            pen.font = '14px Arial';
+
+            line(95, 70, 200, 70, "blue", 2);
+            line(400, 100, 715, 100, "blue", 2);
+            line(400, 200, 550, 200, "blue", 2);
+            line(327, 300, 715, 300, "blue", 2);
+            line(400, 100, 400, 300, "blue", 2);
+            line(550, 100, 550, 300, "blue", 2);
+
+            pen.fillText('От скважин', 15, 74);
+            pen.fillText('Выход 1', 730, 104);
+            pen.fillText('Выход 2', 730, 304);
+
+            //Устройства
+            Nasos(450, 100, scale_g);
+            Nasos(450, 200, scale_g);
+            Nasos(450, 300, scale_g);
+            Flowmeter(650, 100, scale_g);
+            Flowmeter(650, 300, scale_g);
+            Zadv(150, 70, scale_g);
+
+            //Резервуар
+            pen.fillStyle = "black";
+            pen.strokeRect(200, 50, 127, 300);
+            line(263, 50, 279, 16, "black", 1);
+            pen.fillText('Резервуар чистой воды', 280, 15);
+            pen.fillText('Насосы 2 подъёма', 400, 60);
+
+            pen.fillStyle = "black";
+            //Risov("0,3", 407);
+        }
+        
+        function Flowmeter(x, y, scale) {
+            var curpoint = { x: 0, y: 0 };
+            pen.beginPath();
+            pen.fillStyle = "white";
+            pen.fillRect(x - 17.5 * scale, y - 10 * scale, 35 * scale, 20 * scale)
+            pen.fillStyle = "black";
+
+            pen.lineWidth = 2;
+            curpoint.x = x - 17.5 * scale;
+            curpoint.y = y;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 3.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 8.3 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 18.3 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 18.3 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 2.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 4.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 10.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 10.1 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 4.4 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 10.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 4.4 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 4.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 2.1 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 8.3 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 6.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 2.6 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 6.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 6.0 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 2.6 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 24.5 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 24.5 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 1.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 24.5 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 1.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 2.6 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 6.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y + 6.0 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x - 2.6 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 3.0 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+
+            curpoint.x = x + 9.15 * scale;
+            curpoint.y = y + 4 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            pen.quadraticCurveTo(x, y + 10.0 * scale, x - 9.15 * scale, y + 4 * scale);
+            pen.closePath();
+             pen.stroke();
+        }
+
+        function line(x0, y0, x1, y1, color, width) {
+            pen.beginPath();
+            pen.moveTo(x0, y0);
+            pen.lineTo(x1, y1);
+            pen.closePath();
+            pen.strokeStyle = color;
+            pen.lineWidth = width;
+            pen.stroke();
+            pen.strokeStyle = "black";
+        }
+
+        function Nasos(x, y, scale) {
+            var curpoint = { x: 0, y: 0 };
+            pen.beginPath();
+            pen.fillStyle = "white";
+            pen.fillRect(x - 10 * scale, y - 10 * scale, 20 * scale, 20 * scale)
+            pen.fillStyle = "black";
+
+            pen.lineWidth = 2;
+            curpoint.x = x;
+            curpoint.y = y;
+            var startingAngle = 0 * Math.PI;
+            var endingAngle = 2 * Math.PI;
+            var counterclockwise = false;
+           pen.arc(curpoint.x, curpoint.y, 10 * scale, startingAngle, endingAngle, counterclockwise);
+
+            pen.closePath();
+            pen.stroke();
+
+            pen.lineWidth = 1;
+            curpoint.x = x;
+            curpoint.y = y + 10 * scale;
+           
+            pen.beginPath();
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 10 * scale;
+            curpoint.x = curpoint.x + 10 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.y = curpoint.y - 10 * scale;
+            curpoint.x = curpoint.x - 10 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            pen.closePath();
+            pen.fill();
+            pen.stroke();
+
+        }
+
+        function Zadv(x, y, scale) {
+            var curpoint = { x: 0, y: 0 };
+            pen.beginPath();
+            pen.fillStyle = "white";
+            pen.fillRect(x - 10 * scale, y - 10 * scale, 20 * scale, 20 * scale)
+            pen.fillStyle = "black";
+
+            pen.lineWidth = 2;
+            curpoint.x = x - 10 * scale;
+            curpoint.y = y - 5 * scale;
+            pen.moveTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x;
+            curpoint.y = curpoint.y + 10 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x + 20 * scale;
+            curpoint.y = curpoint.y - 10 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+            curpoint.x = curpoint.x;
+            curpoint.y = curpoint.y + 10 * scale;
+            pen.lineTo(curpoint.x, curpoint.y);
+
+            pen.closePath();
+            pen.stroke();
+        }
+
+        function Risov(ZN, N_ID) {
+           ZN = ZN.replace(",",".");
+           if (N_ID == 407)
+           {
+            pen.beginPath();
+
+            pen.fillStyle = "blue";
+            pen.fillRect(200, 350 - ZN * 300, 127, ZN * 300);
+            pen.fillStyle = "black";
+
+            pen.closePath();
+            pen.stroke();
+           }
+        }
+Schema();
+        </script>
+</body>
+</html>
