@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title></title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+	<body>
+		<style>
+			#inp {
+				width: 300px;
+				height: 300px;
+				text-align: top;
+				display: block;
+				margin-bottom: 10px;
+			}	
+		</style>
+		<textarea id="inp"></textarea>
+		<button type="submit" onclick="getData()">Get data</button>
+		<script>
+			function getData() {
+				let text = document.getElementById("inp");
+				const url = "http://localhost:8000/doc";
+				const data = {"k": "v"};
+
+				fetch(url, { method: "POST" })
+					.then((resp) => {
+						console.log(resp);
+						resp.json().then((data) => {
+							text.value = JSON.stringify(data);
+						})
+					})
+					.catch((error) => {
+						text.value = "ERROR"
+						console.log("ERR", error);
+					});
+			}
+		</script>
+	</body>
+</html>
